@@ -3,9 +3,24 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videoList: props.videos,
-      currentPlayerVideo: props.videos[0]
+      videoList: [],
+      currentPlayerVideo: null
     };
+  }
+
+  componentDidMount() {
+    var searchObj = {
+      key: window.YOUTUBE_API_KEY,
+      query: 'dogs',
+      max: 5
+    };
+    var setVideosCB = (videos) => {
+      this.setState({
+        videoList: videos,
+        currentPlayerVideo: videos[0]
+      });
+    };
+    this.props.searchYouTube(searchObj, setVideosCB);
   }
 
   selectVideo(selectedVideo) {
@@ -25,10 +40,14 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={this.state.currentPlayerVideo} />
+            {this.state.currentPlayerVideo &&
+              <VideoPlayer video={this.state.currentPlayerVideo} />
+            }
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.props.videos} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
+            {this.state.videoList.length > 0 &&
+              <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
+            }
           </div>
         </div>
       </div>
@@ -39,4 +58,11 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
+
+/*<div className="col-md-7">
+            <VideoPlayer video={this.state.currentPlayerVideo} />
+          </div>
+          <div className="col-md-5">
+            <VideoList videos={this.props.videos} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
+          </div>*/
 

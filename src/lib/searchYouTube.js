@@ -8,7 +8,8 @@ var searchYouTube = (options, callback) => {
       q: options.query, 
       maxResults: options.max, 
       part: 'snippet',
-      type: 'video'
+      type: 'video',
+      videoEmbeddable: true
     },
     success: function (response) {
       callback(response.items);
