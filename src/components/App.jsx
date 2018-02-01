@@ -2,7 +2,6 @@ class App extends React.Component {
   
   constructor(props) {
     super(props);
-    this.searchYouTube = _.debounce(this.searchYouTube, 500);
     this.state = {
       videoList: [],
       currentPlayerVideo: null
@@ -13,12 +12,13 @@ class App extends React.Component {
 
   componentDidMount() {
     this.searchYouTube();
+    this.searchYouTube = _.debounce(this.searchYouTube, 500);
   }
 
   searchYouTube(query) {
     var searchObj = {
       key: this.props.apiKey,
-      query: query ? query : 'dogs',
+      query: query || 'dogs catching food',
       max: 5
     };
     var setVideosCB = (videos) => {
