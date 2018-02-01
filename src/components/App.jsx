@@ -8,10 +8,16 @@ class App extends React.Component {
     };
   }
 
+  /// SEARCH /////////////////////////////////
+
   componentDidMount() {
+    this.searchYouTube();
+  }
+
+  searchYouTube(query) {
     var searchObj = {
-      key: window.YOUTUBE_API_KEY,
-      query: 'dogs',
+      key: this.props.apiKey,
+      query: query ? query : 'dogs',
       max: 5
     };
     var setVideosCB = (videos) => {
@@ -23,19 +29,24 @@ class App extends React.Component {
     this.props.searchYouTube(searchObj, setVideosCB);
   }
 
+  /// EVENTS /////////////////////////////////
+
+  enterSearchQuery(query) {
+    this.searchYouTube(query);
+  }
+
   selectVideo(selectedVideo) {
     this.setState ({
       currentPlayerVideo: selectedVideo
     });
   }
 
-
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search keyUpFn={this.enterSearchQuery.bind(this)} />
           </div>
         </nav>
         <div className="row">
