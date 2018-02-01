@@ -2,6 +2,7 @@ class App extends React.Component {
   
   constructor(props) {
     super(props);
+    this.searchYouTube = _.debounce(this.searchYouTube, 500);
     this.state = {
       videoList: [],
       currentPlayerVideo: null

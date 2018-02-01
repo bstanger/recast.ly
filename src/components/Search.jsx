@@ -1,6 +1,6 @@
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" onKeyUp={() => props.keyUpFn(document.getElementsByClassName('form-control')[0].value)}/>
+    <input className="form-control" type="text" onChange={(event) => props.keyUpFn(event.currentTarget.value)}/>
     <button className="btn hidden-sm-down">
       <span className="glyphicon glyphicon-search"></span>
     </button>
