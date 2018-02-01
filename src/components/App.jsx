@@ -40,14 +40,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            {this.state.currentPlayerVideo &&
-              <VideoPlayer video={this.state.currentPlayerVideo} />
-            }
+            <VideoPlayer video={this.state.currentPlayerVideo} />
           </div>
           <div className="col-md-5">
-            {this.state.videoList.length > 0 &&
-              <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
-            }
+            <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
           </div>
         </div>
       </div>
@@ -58,11 +54,4 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
-
-/*<div className="col-md-7">
-            <VideoPlayer video={this.state.currentPlayerVideo} />
-          </div>
-          <div className="col-md-5">
-            <VideoList videos={this.props.videos} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
-          </div>*/
 
