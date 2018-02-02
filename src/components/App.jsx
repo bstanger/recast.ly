@@ -55,7 +55,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentPlayerVideo} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)} appState={this.state}/>
+            <VideoList videos={this.state.videoList} selectVideo={this.selectVideo.bind(this)}/>
           </div>
         </div>
       </div>
